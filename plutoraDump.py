@@ -91,5 +91,5 @@ if __name__ == '__main__':
           print "EXCEPTION: %s " % ex.msg
           exit('couldnt open file {0}'.format(config_filename))
 
+# Now that everything else is 'set up', go call the logon/dump routine, displaying the dump_entity
    plutoraDump(client_id, client_secret, plutora_username, plutora_password, dump_entity)
-    

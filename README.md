@@ -5,9 +5,9 @@ from Plutora.
 **`IMPLEMENTATION`**
 Programmed in Python, using the requests library, this program
 takes commandline parameters of the form 
-    'python plutoraDump.py -p <URL-suffix> -f mysyscreate.cfg'
+    'python plutoraDump.py -p URL-suffix -f mycredentials.cfg'
 
-All user/password parameterws are obtained from the config-file
+All user/password parameters are obtained from the config-file
 named credentials.cfg, by default.
 
 

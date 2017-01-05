@@ -6,8 +6,11 @@ import argparse
 import json
 
 #
-# This is a sample program intended to demonstrate creating a system in Plutora
+# This is a sample program intended to demonstrate dumping information from Plutora
 # it requires previously 'set up' access to Plutora (client_id and client_secret, etc)
+# which information is stored in a file by default named credentials.cfg.
+# Additionally, the -p parameter specifies the URL 'suffix' which we would like to
+# 'dump'
 #
 
 def plutoraDump(clientid, clientsecret, PlutoraUsername, PlutoraPassword, dumpEntity):
@@ -90,4 +93,3 @@ if __name__ == '__main__':
 
    plutoraDump(client_id, client_secret, plutora_username, plutora_password, dump_entity)
     
-#    print("\n\nWell, it seems we're all done here, boys; time to pack up and go home...")

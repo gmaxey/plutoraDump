@@ -1,17 +1,14 @@
 **`PURPOSE`**:
-This is an example of how you would programmatically create an
-object of type 'system' in Plutora.
+This is an example of how you would programmatically dump information
+from Plutora.
 
 **`IMPLEMENTATION`**
 Programmed in Python, using the requests library, this program
 takes commandline parameters of the form 
-    'python plSystemCreate.py -p username:password -f mysyscreate.cfg'
+    'python plutoraDump.py -p <URL-suffix> -f mysyscreate.cfg'
 
-The user/password parameterws are then used to log into the specific Plutora 
-instance associated with your login.
+All user/password parameterws are obtained from the config-file
+named credentials.cfg, by default.
 
-The 'system' parameters are contained in the file specified 
-after the -f' commandline parameter, elsewise in a file in the local
-directory named 'syscreate.cfg'
 
-	12.23.16-jps
+	1.5.17-jps

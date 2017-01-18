@@ -85,7 +85,6 @@ if __name__ == '__main__':
       client_secret = data["credentials"]["clientSecret"]
       plutora_username = data["credentials"]["plutoraUser"].replace('@','%40')
       plutora_password = data["credentials"]["plutoraPassword"]
-#      plutora_username.replace('@',"%40")
    except Exception, ex:
           # ex.msg is a string that looks like a dictionary
           print "EXCEPTION: %s " % ex.msg

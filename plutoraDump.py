@@ -8,9 +8,10 @@ import json
 #
 # This is a sample program intended to demonstrate dumping information from Plutora
 # it requires previously 'set up' access to Plutora (client_id and client_secret, etc)
-# which information is stored in a file by default named credentials.cfg.
+# in JSON-format, contained in a file named credentials.cfg (by default).
 # Additionally, the -p parameter specifies the URL 'suffix' which we would like to
 # 'dump'
+# If the user wants to use a different filename, the switch '-f <filename>' also works.
 #
 
 def plutoraDump(clientid, clientsecret, PlutoraUsername, PlutoraPassword, dumpEntity):
@@ -31,7 +32,7 @@ def plutoraDump(clientid, clientsecret, PlutoraUsername, PlutoraPassword, dumpEn
     authResponse = requests.post(authTokenUrl, data=payload, headers=headers)
     if authResponse.status_code != 200:
         print('Get auth-release status code: %i' % authResponse.status_code)
-        print('plSuystemCreate.py: Sorry! - [failed on getAuthToken]: ', authResponse.text)
+        print('plutoraDump.py: Sorry! - [failed on getAuthToken]: ', authResponse.text)
         exit('Sorry, unrecoverable error; gotta go...')
     else:
         accessToken = authResponse.json()["access_token"]
@@ -50,7 +51,7 @@ def plutoraDump(clientid, clientsecret, PlutoraUsername, PlutoraPassword, dumpEn
         r = requests.get(plutoraBaseUrl+dumpEntity, data=payload, headers=headers)
         if r.status_code != 200:
             print('Get release status code: %i' % r.status_code)
-            print('\npltplutoraDump.py: too bad sucka! - [failed on Plutora get]')
+            print('\nplutoraDump.py: too bad sucka! - [failed on Plutora get]')
             exit('Sorry, unrecoverable error; gotta go...')
         else:
             pp.pprint(r.json())
@@ -69,16 +70,15 @@ if __name__ == '__main__':
    parser.add_argument('-p', action='store', dest='dump_item',
                        help='Plutora entity to dump (e.g. "/systems")')
    results = parser.parse_args()
-
-   config_filename = results.config_filename
    dump_entity = results.dump_item
 
+   config_filename = results.config_filename
    if config_filename == None:
        config_filename = 'credentials.cfg'
 
    try:
       # If we don't specify a configfile on the commandline, assume one & try accessing
-      # using the specified/assumed configfilename, grab ClientId & Secret from manual setup of Plutora Oauth authorization.
+      # using the specified/assumed configfilename, grabbing ClientId & Secret from the JSON (manual setup of Plutora Oauth authorization.
       with open(config_filename) as data_file:
              data = json.load(data_file)
       client_id = data["credentials"]["clientId"]

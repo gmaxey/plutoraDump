@@ -1,1 +1,6 @@
 *.cfg
+*.xml
+*.iml
+*.csv
+*.xlsx
+*.txt

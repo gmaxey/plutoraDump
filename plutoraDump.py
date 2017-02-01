@@ -81,10 +81,10 @@ if __name__ == '__main__':
       # using the specified/assumed configfilename, grabbing ClientId & Secret from the JSON (manual setup of Plutora Oauth authorization.
       with open(config_filename) as data_file:
              data = json.load(data_file)
-      client_id = data["credentials"]["clientId"]
-      client_secret = data["credentials"]["clientSecret"]
-      plutora_username = data["credentials"]["plutoraUser"].replace('@','%40')
-      plutora_password = data["credentials"]["plutoraPassword"]
+      client_id = data["credentials"]["client_id"]
+      client_secret = data["credentials"]["client_secret"]
+      plutora_username = data["credentials"]["username"].replace('@','%40')
+      plutora_password = data["credentials"]["password"]
    except Exception, ex:
           # ex.msg is a string that looks like a dictionary
           print "EXCEPTION: %s " % ex.msg

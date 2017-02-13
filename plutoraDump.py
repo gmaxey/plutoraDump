@@ -47,20 +47,25 @@ def plutoraDump(clientid, clientsecret, PlutoraUsername, PlutoraPassword, dumpEn
     }
 
     try:
-        # Experiment -- Get Plutora information for all system releases, or systems, or just the organization-tree
         r = requests.get(plutoraBaseUrl+dumpEntity, data=payload, headers=headers)
         if r.status_code != 200:
             print('Get release status code: %i' % r.status_code)
             print('\nplutoraDump.py: too bad sucka! - [failed on Plutora get]')
             exit('Sorry, unrecoverable error; gotta go...')
         else:
-            pp.pprint(r.json())
+#          pp.pprint(r.json())
+           # The following is kind of 'hokey', but seems to be the only way I can get
+           # quasi-ascii output, so I can 'pipe it' through the JQ tool to separate
+           # out the JSON-fields (like just the '"id's", for exanple:
+           # ipython plutoraDump.py -f f1k_credentials.cfg -p /systems  | jq '.[] | {id} | .[]'
+           r.encoding = 'ISO-8859-1'
+           print(json.loads(json.dumps(r.text)))
 
     except Exception,ex:
         # ex.msg is a string that looks like a dictionary
         print "EXCEPTION: %s " % ex.msg
         exit('Error during API processing [POST]')
-        
+
 if __name__ == '__main__':
    # parse commandline and get appropriate passwords/configuration-items
    #

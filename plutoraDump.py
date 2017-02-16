@@ -4,6 +4,7 @@ import requests
 import pprint
 import argparse
 import json
+import sys
 
 #
 # This is a sample program intended to demonstrate dumping information from Plutora
@@ -90,9 +91,9 @@ if __name__ == '__main__':
       client_secret = data["credentials"]["client_secret"]
       plutora_username = data["credentials"]["username"].replace('@','%40')
       plutora_password = data["credentials"]["password"]
-   except Exception, ex:
+   except Exception as e:
           # ex.msg is a string that looks like a dictionary
-          print "EXCEPTION: %s " % ex.msg
+          print "EXCEPTION: type: %s, msg: %s " % (sys.exc_info()[0], sys.exc_info()[1].message)
           exit('couldnt open file {0}'.format(config_filename))
 
 # Now that everything else is 'set up', go call the logon/dump routine, displaying the dump_entity
